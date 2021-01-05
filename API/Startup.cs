@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Helpers;
+using AutoMapper;
 using Core.Interfaces;
 using InfraStructure.Data;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +33,7 @@ namespace API
         {
             services.AddScoped<IGenericRepository, ProductRepository>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddAutoMapper(typeof(MappingProfiles));
             services.AddDbContextPool<StoreDbContext>(options =>
                options.UseSqlServer(_config.GetConnectionString("DefaultConnections")));
             //services.AddDbContextPool<StoreDbContext>(options =>
